@@ -1,9 +1,39 @@
 ﻿using System;
 using System.Text;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace GAME
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct G3DVECTOR
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct GID
+    {
+        public int type;
+        public int id;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct GMSG
+    {
+	    public int message;
+        public GID target;
+        public GID source;
+        public G3DVECTOR pos;
+	    public int param;
+	    public int param2;
+        public int content_length;
+        public IMsgContent content;
+    };
+    public interface IMsgContent
+    {
+
+    }
     /// <summary>
     /// 角色接口类
     /// </summary>

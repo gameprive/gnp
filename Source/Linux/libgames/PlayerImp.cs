@@ -41,6 +41,15 @@ namespace GAME
 
         }
         /// <summary>
+        /// 角色消息处理回调函数
+        /// </summary>
+        /// <param name="msg">消息对象</param>
+        /// <returns>是否处理</returns>
+        protected bool OnMessageHandler(GMSG msg)
+        {
+            return false;
+        }
+        /// <summary>
         /// 角色进入地图回调函数
         /// </summary>
         protected void OnEnterWorld()
@@ -53,6 +62,30 @@ namespace GAME
         protected void OnLeaveWorld()
         {
 
+        }
+        protected void OnAddExp(ref long exp)
+        {
+            GMatrix matrix = GMatrix.GetMatrix();
+            string name = GetName();
+            string s;
+
+            s = string.Format("玩家({0})获得经验{1}", name, exp);
+
+            exp *= 2;
+
+            matrix.BroadcastMsg(s, 9);
+        }
+        protected void OnIncExp(ref long exp)
+        {
+            GMatrix matrix = GMatrix.GetMatrix();
+            string name = GetName();
+            string s;
+
+            s = string.Format("玩家({0})得到经验{1}", name, exp);
+
+            exp *= 2;
+
+            matrix.BroadcastMsg(s, 9);
         }
         /// <summary>
         /// 角色等级提升回调函数
